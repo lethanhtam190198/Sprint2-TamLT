@@ -60,6 +60,7 @@ header {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-top: 50px;
 }
 
 .parallax img {
@@ -103,11 +104,29 @@ header {
   margin-left: 30px;
   width: 350px;
   border-radius:10px;
-margin-bottom: 40%;
+  margin-bottom: 28%;
 }
 .card:hover {
   -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
   box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
+}
+.heading_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.heading_container h2 {
+  position: relative;
+  font-weight: bold;
+}
+.heading_container h2::before {
+  content: url(../../assets/img/tulip.png);
+  position: absolute;
+  top: 50%;
+  left: -35px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 
@@ -145,9 +164,7 @@ margin-bottom: 40%;
   right: 1px;
   bottom: 1px;
   padding: 15px;
-  background: #1e1f29;
   text-align: center;
-  -webkit-transform: translateY(0%);
   -ms-transform: translateY(0%);
   transform: translateY(0%);
   -webkit-transition: 0.2s all;
