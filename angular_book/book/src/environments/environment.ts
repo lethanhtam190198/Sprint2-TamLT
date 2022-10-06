@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:8080/api/public/books',
+  firebaseConfig: {
+    apiKey: 'AIzaSyBJ8krphcGm4zAPrGaQrdO75BRBX3QpFS0',
+    authDomain: 'tam-le-112a8.firebaseapp.com',
+    projectId: 'tam-le-112a8',
+    storageBucket: 'tam-le-112a8.appspot.com',
+    messagingSenderId: '373728916440',
+    appId: '1:373728916440:web:d15385ff4d08453b8638ad',
+    measurementId: 'G-63ZVSQPZHV',
+    databaseURL: 'https://tam-le-112a8-default-rtdb.asia-southeast1.firebasedatabase.app/'
+  }
 };
 
 /*

@@ -15,14 +15,11 @@ public class Book {
     private String publisher;
     private Integer quantity;
     private String releaseDate;
-    private double price;
+    private Double price;
     private Integer totalPages;
     private String translator;
     private boolean status;
-
-    @ManyToOne
-    @JoinColumn(name = "author", referencedColumnName = "id")
-    private Author author;
+    private String author;
 
     @ManyToOne
     @JoinColumn(name = "discount", referencedColumnName = "id")
@@ -35,7 +32,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Integer id, String name, String code, String description, String dimension, String image, String publisher, Integer quantity, String releaseDate, double price, Integer totalPages, String translator, boolean status, Author author, Discount discount, Category category) {
+    public Book(Integer id, String name, String code, String description, String dimension, String image, String publisher, Integer quantity, String releaseDate, double price, Integer totalPages, String translator, boolean status, String author, Discount discount, Category category) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -126,11 +123,11 @@ public class Book {
         this.releaseDate = releaseDate;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -158,11 +155,11 @@ public class Book {
         this.status = status;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

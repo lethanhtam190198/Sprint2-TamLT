@@ -7,66 +7,63 @@
 
         <div class="col-lg-5 mt-5">
           <div class="card mb-3">
-            <img class="card-img img-fluid" src="https://cdn0.fahasa.com/media/catalog/product/9/7/9786043556797.jpg" >
+            <img class="card-img img-fluid" src="{{image}}" >
           </div>
         </div>
         <div class="col-lg-7 mt-5">
           <div class="card">
             <div class="card-body">
-              <h1 class="h2" style="color: #EBA850">Lì Quá Để Nói Quài</h1>
+              <h1 class="h2" style="color: #EBA850">{{name}}</h1>
               <ul class="list-inline">
                 <li class="list-inline-item w-25">
                   <p>Mã Sản Phẩm: </p>
                 </li>
                 <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>8976421365484998</strong></p>
+                  <p class="text-muted"><strong>{{code}}</strong></p>
                 </li>
                 <li class="list-inline-item w-25">
                   <p>Tác Giả: </p>
                 </li>
                 <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>Nguyễn Văn A</strong></p>
+                  <p class="text-muted"><strong>{{author}}</strong></p>
                 </li>
                 <li class="list-inline-item w-25">
                   <p>Nhà Xuất Bản: </p>
                 </li>
                 <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>Kim Đồng</strong></p>
+                  <p class="text-muted"><strong>{{publisher}}</strong></p>
                 </li>
                 <li class="list-inline-item w-25">
                   <p>Số Trang: </p>
                 </li>
                 <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>200</strong></p>
+                  <p class="text-muted"><strong>{{totalPages}}</strong></p>
                 </li>
                 <li class="list-inline-item w-25">
                   <p>Kích Thước: </p>
                 </li>
                 <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>14 x 20 cm</strong></p>
+                  <p class="text-muted"><strong>{{dimension}}</strong></p>
                 </li>
                 <li class="list-inline-item w-25">
                   <p>Ngày Phát Hành: </p>
                 </li>
                 <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>10 / 09 / 2022</strong></p>
+                  <p class="text-muted"><strong>{{releaseDate}}</strong></p>
                 </li>
               </ul>
 
               <p>Giới Thiệu:</p>
-              <p style="color: black">NẾU MỘT NGÀY ANH THẤY TÔI ĐIÊN, THỰC RA CHÍNH LÀ ANH ĐIÊN ĐẤY!</p>
-              <p style="color: black">Hỡi những con người đang oằn mình trong cuộc sống, bạn biết gì về thế giới của mình? Là vô vàn thứ lý
-                thuyết được các bậc vĩ nhân kiểm chứng, là luật lệ, là cả nghìn thứ sự thật bọc trong cái lốt hiển
-                nhiên, hay những triết lý cứng nhắc của cuộc đời?
+              <p style="color: black">{{description}}
               </p>
               <div>
                 <input type="hidden" name="product-title" value="Activewear">
                 <div class="row">
                   <div class="col-auto">
-                    <p class="h3 py-2 text-danger">127.00 đ</p>
+                    <p class="h3 py-2 text-danger">{{price | currency : 'VND'}}</p>
                     <ul class="list-inline pb-3">
                       <li style="color: #EBA850" class="list-inline-item text-right">
-                        Quantity:
+                        Số lượng:
                         <input type="hidden" name="product-quanity" id="product-quanity" value="1">
                       </li>
                       <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >-</button></li>
@@ -75,13 +72,13 @@
                     </ul>
                   </div>
                 </div>
-                <div class="row pb-3">
-                  <div class="col d-grid">
+                <div class="row pb-3" >
+                  <div class="col d-grid" >
                     <button type="submit" style="background-color: #EBA850" class="btn" name="submit" value="buy">Mua ngay</button>
                   </div>
                   <div class="col d-grid">
-                    <button type="submit"  style="background-color: #EBA850" class="btn" name="submit" value="addtocard">Thêm vào giỏ hàng
-                    </button>
+                    <a type="button" style="background-color: #EBA850" class="btn" >Thêm vào giỏ hàng
+                    </a>
                   </div>
                 </div>
               </div>

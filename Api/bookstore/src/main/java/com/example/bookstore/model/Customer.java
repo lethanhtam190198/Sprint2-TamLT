@@ -19,9 +19,9 @@ public class Customer {
     private String phone;
 
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    private Users users;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AppUser appUser;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -30,7 +30,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer id, String name, String birthDay, String address, String email, Integer gender, String phone, Users users, List<Cart> carts) {
+
+    public Customer(Integer id, String name, String birthDay, String address, String email, Integer gender, String phone, AppUser appUser, List<Cart> carts) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
@@ -38,7 +39,7 @@ public class Customer {
         this.email = email;
         this.gender = gender;
         this.phone = phone;
-        this.users = users;
+        this.appUser = appUser;
         this.carts = carts;
     }
 
@@ -98,12 +99,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Users getUsers() {
-        return users;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public List<Cart> getCarts() {

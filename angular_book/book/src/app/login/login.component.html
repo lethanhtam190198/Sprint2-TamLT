@@ -7,16 +7,16 @@
                class="img-fluid" alt="Phone image">
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-          <form>
+          <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
             <!-- Email input -->
             <div class="form-outline mb-4 form__div">
-              <input type="text" class="form__input form-control" placeholder=" ">
+              <input type="text" class="form__input form-control" placeholder=" " formControlName="username">
                 <label class="form__label">Tài khoản</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4 form__div" >
-              <input type="password" class="form__input form-control" placeholder=" ">
+              <input type="password" class="form__input form-control" placeholder=" " formControlName="password">
               <label  class="form__label">Mật khẩu</label>
             </div>
 
