@@ -50,15 +50,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     void deleteBook(int id);
 
     @Query(value = "select * from book where status = 0 and category =1", nativeQuery = true)
-    Page<Book> vietnameseLiterature(Pageable pageable);
+    Page<Book> categoryBook(Pageable pageable);
 
-    @Query(value = "select * from book where status = 0 and category =2", nativeQuery = true)
-    Page<Book> foreignLiterature(Pageable pageable);
-
-    @Query(value = "select * from book where status = 0 and category =3", nativeQuery = true)
-    Page<Book> children(Pageable pageable);
-
-    @Query(value = "select * from book where status = 0 and category =4", nativeQuery = true)
-    Page<Book> politicalNews(Pageable pageable);
-
+    @Query(value = "select * from book where code=:code" ,nativeQuery = true)
+    List<Book> checkCode(@Param("code")String code);
 }

@@ -22,7 +22,6 @@ public interface IBookService {
     void deleteBook(int id);
 
     Page<Book>vietnameseLiterature(Pageable pageable);
-    Page<Book>foreignLiterature(Pageable pageable);
-    Page<Book>children(Pageable pageable);
-    Page<Book>politicalNews(Pageable pageable);
+
+    Boolean existCode(String code);
 }

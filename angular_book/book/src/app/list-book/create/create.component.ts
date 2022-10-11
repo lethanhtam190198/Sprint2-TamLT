@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BooksService} from '../../service/books.service';
 import {CategoryService} from '../../service/category.service';
 import {DiscountService} from '../../service/discount.service';
@@ -28,26 +28,26 @@ export class CreateComponent implements OnInit {
   msg = '';
   loader = true;
   loadImage = true;
-// isExitsCode = false;
+  isExitsCode = false;
   categories: Category[] = [];
   discounts: Discount[] = [];
 
   bookForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
-    code: new FormControl(''),
-    author: new FormControl(''),
-    description: new FormControl(''),
-    dimension: new FormControl(''),
-    image: new FormControl(''),
-    name: new FormControl(''),
-    price: new FormControl(''),
-    publisher: new FormControl(''),
-    quantity: new FormControl(''),
-    releaseDate: new FormControl(''),
-    totalPages: new FormControl(''),
-    translator: new FormControl(''),
-    category: new FormControl(''),
-    discount: new FormControl('')
+    id: new FormControl('', [Validators.required]),
+    code: new FormControl('', [Validators.required]),
+    author: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    dimension: new FormControl('', [Validators.required]),
+    image: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    publisher: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [Validators.required]),
+    releaseDate: new FormControl('', [Validators.required]),
+    totalPages: new FormControl('', [Validators.required]),
+    translator: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    discount: new FormControl('', [Validators.required])
   });
 
   constructor(private bookService: BooksService,
@@ -179,4 +179,16 @@ export class CreateComponent implements OnInit {
     };
   }
 
+  checkCode($event: EventTarget) {
+    this.bookService.checkCode(String($event)).subscribe(
+      value => {
+        if (value) {
+          this.isExitsCode = true;
+        } else {
+          this.isExitsCode = false;
+        }
+        console.log(this.isExitsCode);
+      }
+    );
+  }
 }

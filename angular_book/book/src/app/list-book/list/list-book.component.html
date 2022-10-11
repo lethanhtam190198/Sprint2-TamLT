@@ -1,4 +1,4 @@
-<div class="bg">
+<div class="bg" style="margin-top: 50px">
   <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div>
   <div class="container container-list pb-1">
     <div style="text-align: center; font-size: 30px;" class="mt-3"><b>DANH SÁCH</b></div>
@@ -50,8 +50,6 @@
           <th class="text-light">Mã Sách</th>
           <th class="text-light">Tác giả</th>
           <th class="text-light">Nhà xuất bản</th>
-          <th class="text-light">Mô tả</th>
-          <th class="text-light">Kích thước</th>
           <th class="text-light">Giá</th>
           <th class="text-light">Số lượng</th>
           <th class="text-light">Số trang</th>
@@ -64,14 +62,12 @@
         </thead>
         <tbody>
         <tr *ngFor="let listBook of books; index as i">
-          <td>{{i + 1}}</td>
+          <td>{{(i + 1)+ this.pageSize * indexPagination }}</td>
           <td style="text-align: center"><img src="{{listBook.image}}" style="height: 20%;width: 20%"></td>
           <td>{{listBook.name}}</td>
           <td>{{listBook.code}}</td>
           <td>{{listBook.author}}</td>
           <td>{{listBook.publisher}}</td>
-          <td>{{listBook.description}}</td>
-          <td>{{listBook.dimension}}</td>
           <td>{{listBook.price}}</td>
           <td>{{listBook.quantity}}</td>
           <td>{{listBook.totalPages}}</td>
@@ -93,22 +89,23 @@
       </table>
 
       <!--phan trang-->
-      <div style="height: 50px;position: relative" class="container pagination-advertisement mb-3">
-        <ul class="pagination justify-content-end" style="text-align: right">
-          <li>
-            <select class="form-select" (change)="totalElement($event)">
-              <option value="6">6</option>
-              <option value="12">12</option>
-              <option value="18">18</option>
-              <option value="full">Tất Cả</option>
+      <div [ngStyle]="{'display':displayPagination}">
+        <div style="bottom: 26px;right: 49px  ">
+          <div style="display: flex;align-items: center;justify-content: flex-end">
+            <span style="margin: 0 10px 0 0">Số phần tử của trang:</span>
+            <select (change)="changePageSize($event)" style="width: 95px" class="form-select">
+              <option value="8">8</option>
+              <option value="16">16</option>
+              <option value="24">24</option>
+              <option value="full list">Tất cả</option>
             </select>
-          </li>
-          <li class="page-item">
-<span style="margin: 0 20px 0 20px">{{pageSize * indexPagination + 1}}
-  - {{pageSize * indexPagination + numberOfElement}} trên {{totalElements}}</span>
+            <span style="margin: 0 20px 0 40px">
+            {{pageSize * indexPagination + 1}} - {{pageSize * indexPagination + numberOfElement}}
+              trên {{totalElements}}
+          </span>
             <button (click)="previousPage($event)" [ngStyle]="{'display':previousPageStyle}" type="button"
                     class="btn btn-outline-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                    class="bi bi-chevron-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                       d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -117,14 +114,14 @@
             <button (click)="nextPage($event)" [ngStyle]="{'display':nextPageStyle}" style="margin-left: 10px"
                     type="button"
                     class="btn btn-outline-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                    class="bi bi-chevron-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                       d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
               </svg>
             </button>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
       <!-- kết thúc phân trang-->
     </div>

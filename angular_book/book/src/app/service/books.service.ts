@@ -45,7 +45,7 @@ export class BooksService {
   }
 
   getVietnameseLiterature(): Observable<Books[]> {
-    return this.http.get<Books[]>(URL + '/vietnameseLiterature');
+    return this.http.get<Books[]>(URL + '/categoryBook');
   }
 
   getCart() {
@@ -93,5 +93,8 @@ export class BooksService {
       totalAll += (item.price * item.quantity) * (1 - (item.discount / 100));
     });
     return totalAll;
+  }
+  checkCode(code: string): Observable<string> {
+    return this.http.get<string>(URL + '/check/' + code);
   }
 }

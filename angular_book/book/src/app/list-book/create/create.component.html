@@ -13,15 +13,20 @@
               <div class="col-lg-6 d-grid">
                 <mat-form-field appearance="outline">
                   <mat-label>Mã Sách <span><i>(*)</i></span></mat-label>
-                  <input matInput type="text" placeholder="Nhập Mã Sách" formControlName="code">
-                  <!--                  <mat-error></mat-error>-->
+                  <input matInput type="text" placeholder="Nhập Mã Sách" formControlName="code" (keyup)="checkCode($event.target.value)">
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.code.hasError('required') && bookForm.controls.code.touched">Không được để trống</p>
+                    <p *ngIf="bookForm.controls.code.hasError('required') && isExitsCode == true">Mã sách đã tồn tại.</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">
                 <mat-form-field appearance="outline">
                   <mat-label>Tên Sách <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" placeholder="Nhập Tên Sách" formControlName="name">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.name.hasError('required') && bookForm.controls.name.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -33,7 +38,9 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Tác Giả <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" placeholder="Nhập Tên Tác Giả" formControlName="author">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.author.hasError('required') && bookForm.controls.author.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">

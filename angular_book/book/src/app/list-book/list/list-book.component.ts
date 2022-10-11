@@ -37,7 +37,7 @@ export class ListBookComponent implements OnInit {
   pageSize: number;
   previousPageStyle = 'inline-block';
   nextPageStyle = 'inline-block';
-  displayPagination = 'inline-block';
+  displayPagination = '';
   constructor(private bookService: BooksService,
               private categoryService: CategoryService,
               private toast: ToastrService,
@@ -85,7 +85,6 @@ export class ListBookComponent implements OnInit {
         this.pageSize = data?.size;
         this.numberOfElement = data?.numberOfElements;
         this.books = data?.content;
-        // console.log(this.books + ' ok');
         this.totalElements = data?.totalElements;
       }
       this.checkPreviousAndNext();
@@ -125,24 +124,24 @@ export class ListBookComponent implements OnInit {
     }
   }
 
-  totalElement($event: any) {
-    switch ($event.target.value) {
-      case '8':
+  changePageSize(event: any) {
+    switch (event.target.value) {
+      case '8' :
         this.pageSize = 8;
         this.indexPagination = 0;
         this.ngOnInit();
         break;
-      case '16':
+      case '16' :
         this.pageSize = 16;
         this.indexPagination = 0;
         this.ngOnInit();
         break;
-      case '24':
+      case '24' :
         this.pageSize = 24;
         this.indexPagination = 0;
         this.ngOnInit();
         break;
-      case 'full':
+      case 'full list' :
         this.pageSize = this.totalElements;
         this.indexPagination = 0;
         this.ngOnInit();

@@ -74,15 +74,16 @@
           <option class="text-muted">Shoppe food</option>
           <option class="text-muted">Tiki</option>
         </select>
-<!--        <p>Mã giảm giá</p>-->
-<!--        <input id="code" placeholder="Nhập mã">-->
       </form>
       <div class="row">
         <div class="col"><strong>Tổng tiền:</strong></div>
         <div class="col text-right" style="color: red"> {{totalMoneyAll(cart) | currency: 'VND'}}</div>
       </div>
       <button type="button" class="btn btn-danger" style="border-radius: 15px">Mua hàng</button>
+      <div style="margin-top: 10px" id="paypal">
+      </div>
     </div>
+
   </div>
 </div>
 

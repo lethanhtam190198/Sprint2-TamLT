@@ -51,22 +51,12 @@ public class BookSerive implements IBookService {
 
     @Override
     public Page<Book> vietnameseLiterature(Pageable pageable) {
-        return bookRepository.vietnameseLiterature(pageable);
+        return bookRepository.categoryBook(pageable);
     }
 
     @Override
-    public Page<Book> foreignLiterature(Pageable pageable) {
-        return bookRepository.foreignLiterature(pageable);
-    }
-
-    @Override
-    public Page<Book> children(Pageable pageable) {
-        return bookRepository.children(pageable);
-    }
-
-    @Override
-    public Page<Book> politicalNews(Pageable pageable) {
-        return bookRepository.politicalNews(pageable);
+    public Boolean existCode(String code) {
+        return code.equals(bookRepository.checkCode(code));
     }
 
 }

@@ -140,7 +140,7 @@ public class BookController {
         bookService.save(book.get());
         return new ResponseEntity<>(book.get(), HttpStatus.OK);
     }
-    @GetMapping("/vietnameseLiterature")
+    @GetMapping("/categoryBook")
     public ResponseEntity<Page<Book>> getAll(Pageable pageable) {
         Page<Book> getList = bookService.vietnameseLiterature(pageable);
         if (getList.isEmpty()) {
@@ -155,5 +155,10 @@ public class BookController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(customerList, HttpStatus.OK);
+    }
+
+    @GetMapping("/check/{code}")
+    public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
+        return new ResponseEntity<>(bookService.existCode(code), HttpStatus.OK);
     }
 }
