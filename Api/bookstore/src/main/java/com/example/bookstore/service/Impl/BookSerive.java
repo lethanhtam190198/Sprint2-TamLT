@@ -59,4 +59,9 @@ public class BookSerive implements IBookService {
         return code.equals(bookRepository.checkCode(code));
     }
 
+    @Override
+    public Page<Book> getCategoryBook(Pageable pageable, Integer idCategory, String name) {
+        return bookRepository.getCategoryBook(pageable,idCategory,name);
+    }
+
 }

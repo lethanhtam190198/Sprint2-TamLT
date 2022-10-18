@@ -19,23 +19,19 @@ export class BodyComponent implements OnInit {
   name: any;
   cart: any = this.bookService.getCart();
 
-  constructor(private bookService: BooksService,
-              private toast: ToastrService) {
+  constructor(private bookService: BooksService) {
   }
 
   ngOnInit(): void {
     this.getAll1();
     this.getAll2();
-    console.log(this.cart);
   }
 
   private getAll1() {
     this.bookService.getList1().subscribe((books: any) => {
       if (books != null) {
         this.listBooks1 = books;
-        console.log(books);
       }
-      console.log(this.listBooks1);
     });
   }
 
@@ -50,8 +46,7 @@ export class BodyComponent implements OnInit {
 
   addToCart(book: any) {
     const idx = this.cart.findIndex((item: any) => {
-      // tslint:disable-next-line:triple-equals
-      return item.id == book.id;
+      return item.id === book.id;
     });
     if (idx >= 0) {
       this.cart[idx].quantity += 1;

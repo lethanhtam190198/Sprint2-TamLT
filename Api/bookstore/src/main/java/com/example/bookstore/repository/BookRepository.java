@@ -21,10 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             " order by discount.`percent` desc limit 6 ", nativeQuery = true)
     List<Book> findAllList1();
 
-//    select * from book
-//    join discount on book.discount= discount.id
-//    order by percent desc
-//    limit 6
 
     @Query(value = "select * from book where status = 0 and id =:id", nativeQuery = true)
     Optional<Book> findByIdBook(@Param("id") Integer id);
@@ -54,4 +50,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query(value = "select * from book where code=:code" ,nativeQuery = true)
     List<Book> checkCode(@Param("code")String code);
+
+    @Query(value = "select * from book where status = 0 and category =:idCategory and name =:name", nativeQuery = true)
+    Page<Book> getCategoryBook(Pageable pageable,@Param("idCategory") Integer idCategory,@Param("name") String name);
 }

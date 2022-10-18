@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
     totalPages: new FormControl(''),
     translator: new FormControl(''),
     category: new FormControl(''),
-    discount: new FormControl(1)
+    discount: new FormControl('')
   });
 
   id: number;
@@ -77,9 +77,9 @@ export class EditComponent implements OnInit {
           quantity: new FormControl(book.quantity, [Validators.required, Validators.min(1)]),
           releaseDate: new FormControl(book.releaseDate, [Validators.required]),
           totalPages: new FormControl(book.totalPages, [Validators.required, Validators.min(1)]),
-          translator: new FormControl(book.translator),
-          category: new FormControl(book.category, [Validators.required])
-          // discount: new FormControl(book.discount)
+          translator: new FormControl(book.translator, [Validators.required]),
+          category: new FormControl(book.category, [Validators.required]),
+          discount: new FormControl(book.discount, [Validators.required])
         });
       });
     });
@@ -130,14 +130,17 @@ export class EditComponent implements OnInit {
             totalPages: this.bookForm.value.totalPages,
             translator: this.bookForm.value.translator,
             category: {
-              id: this.bookForm.value.category,
+              id: this.bookForm.value.category
             },
-            status: false
+            status: false,
+            discount: {
+              id: this.bookForm.value.discount
+            }
           };
           console.log(this.bookForm.value);
           this.bookService.edit(this.id, this.bookForm.value).subscribe(() => {
             this.bookForm.reset();
-            this.router.navigateByUrl('');
+            this.router.navigateByUrl('/listBook');
             this.toast.success('Chỉnh Sửa Thành Công..', 'Thông Báo');
           }, e => {
             this.toast.error('Chỉnh Sửa Thất Bại..', 'Thông Báo');
@@ -181,7 +184,7 @@ export class EditComponent implements OnInit {
         totalPages: new FormControl(book.totalPages),
         translator: new FormControl(book.translator),
         category: new FormControl(book.category),
-        discount: new FormControl(1)
+        discount: new FormControl(book.discount)
       });
     });
   }
@@ -228,5 +231,7 @@ export class EditComponent implements OnInit {
       this.url = reader.result;
     };
   }
-
+  compare(value, option): boolean {
+    return value.id === option.id;
+  }
 }

@@ -2,6 +2,7 @@ package com.example.bookstore.dto;
 
 import com.example.bookstore.model.Category;
 import com.example.bookstore.model.Discount;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotBlank;

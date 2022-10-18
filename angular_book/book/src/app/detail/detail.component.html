@@ -1,90 +1,93 @@
 <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div>
-
-<div class="container" style=" box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-top: 50px">
-  <section class="bg-light">
-    <div class="container pb-5">
-      <div class="row">
-
-        <div class="col-lg-5 mt-5">
-          <div class="card mb-3">
-            <img class="card-img img-fluid" src="{{image}}" >
+<div class="row">
+  <div class="container col-8" style=" box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-top: 50px">
+    <section class="bg-light">
+      <div class="container pb-5">
+        <div class="row" style="display: flex;justify-content: center">
+          <div class="col-lg-5 mt-5">
+            <div class="card mb-3">
+              <img class="card-img img-fluid" src="{{image}}" >
+            </div>
           </div>
-        </div>
-        <div class="col-lg-7 mt-5">
-          <div class="card">
-            <div class="card-body">
-              <h1 class="h2" style="color: #EBA850">{{name}}</h1>
-              <ul class="list-inline">
-                <li class="list-inline-item w-25">
-                  <p>Mã Sản Phẩm: </p>
-                </li>
-                <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>{{code}}</strong></p>
-                </li>
-                <li class="list-inline-item w-25">
-                  <p>Tác Giả: </p>
-                </li>
-                <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>{{author}}</strong></p>
-                </li>
-                <li class="list-inline-item w-25">
-                  <p>Nhà Xuất Bản: </p>
-                </li>
-                <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>{{publisher}}</strong></p>
-                </li>
-                <li class="list-inline-item w-25">
-                  <p>Số Trang: </p>
-                </li>
-                <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>{{totalPages}}</strong></p>
-                </li>
-                <li class="list-inline-item w-25">
-                  <p>Kích Thước: </p>
-                </li>
-                <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>{{dimension}}</strong></p>
-                </li>
-                <li class="list-inline-item w-25">
-                  <p>Ngày Phát Hành: </p>
-                </li>
-                <li class="list-inline-item w-50">
-                  <p class="text-muted"><strong>{{releaseDate}}</strong></p>
-                </li>
-              </ul>
+          <div class="col-lg-7 mt-5">
+            <div class="card" style="background-color: #f8f9fa; border: none">
+              <div class="card-body">
+                <h1 class="h2" style="color: #EBA850">{{name}}</h1>
+                <ul class="list-inline">
+                  <li class="list-inline-item w-25">
+                    <p>Mã Sản Phẩm: </p>
+                  </li>
+                  <li class="list-inline-item w-50">
+                    <p class="text-muted"><strong>{{code}}</strong></p>
+                  </li>
+                  <li class="list-inline-item w-25">
+                    <p>Tác Giả: </p>
+                  </li>
+                  <li class="list-inline-item w-50">
+                    <p class="text-muted"><strong>{{author}}</strong></p>
+                  </li>
+                  <li class="list-inline-item w-25">
+                    <p>Nhà Xuất Bản: </p>
+                  </li>
+                  <li class="list-inline-item w-50">
+                    <p class="text-muted"><strong>{{publisher}}</strong></p>
+                  </li>
+                  <li class="list-inline-item w-25">
+                    <p>Số Trang: </p>
+                  </li>
+                  <li class="list-inline-item w-50">
+                    <p class="text-muted"><strong>{{totalPages}}</strong></p>
+                  </li>
+                  <li class="list-inline-item w-25">
+                    <p>Kích Thước: </p>
+                  </li>
+                  <li class="list-inline-item w-50">
+                    <p class="text-muted"><strong>{{dimension}}</strong></p>
+                  </li>
+                  <li class="list-inline-item w-25">
+                    <p>Ngày Phát Hành: </p>
+                  </li>
+                  <li class="list-inline-item w-50">
+                    <p class="text-muted"><strong>{{releaseDate}}</strong></p>
+                  </li>
+                </ul>
 
-              <p>Giới Thiệu:</p>
-              <p style="color: black">{{description}}
-              </p>
-              <div>
-                <input type="hidden" name="product-title" value="Activewear">
-                <div class="row">
-                  <div class="col-auto">
-                    <p class="h3 py-2 text-danger">{{price | currency : 'VND'}}</p>
-                    <ul class="list-inline pb-3">
-                      <li style="color: #EBA850" class="list-inline-item text-right">
-                        Số lượng:
-                        <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                      </li>
-                      <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >-</button></li>
-                      <li class="list-inline-item"><button class="btn btn-success badge bg-secondary" >1</button></li>
-                      <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >+</button></li>
-                    </ul>
+                <p>Giới Thiệu:</p>
+                <p style="color: black">{{description}}
+                </p>
+                <div>
+                  <input type="hidden" name="product-title" value="Activewear">
+                  <div class="row">
+                    <div class="col-auto">
+                      <p class="h3 py-2 text-danger">{{price | currency : 'VND'}}</p>
+                      <ul class="list-inline pb-3">
+                        <li style="color: #EBA850" class="list-inline-item text-right">
+                          Số lượng:
+                          <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                        </li>
+                        <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >-</button></li>
+                        <li class="list-inline-item"><button class="btn btn-success badge bg-secondary" >1</button></li>
+                        <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >+</button></li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div class="row pb-3" >
-                  <div class="col d-grid">
-                    <a type="button" style="background-color: #EBA850" class="btn" >Thêm vào giỏ hàng
-                    </a>
+                  <div class="row pb-3">
+                    <div class="col d-grid">
+                      <a (click)="addToCart(book)" type="button" style="background-color: #EBA850" class="btn" >Thêm vào giỏ hàng
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+
       </div>
-    </div>
-  </section>
-  <!-- Close Content phải -->
+    </section>
+    <!-- Close Content phải -->
+  </div>
+
 </div>
 <div class="vc_empty_space" style="height: 30px"><span class="vc_empty_space_inner"></span></div>

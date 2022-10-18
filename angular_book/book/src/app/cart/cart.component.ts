@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {render} from 'creditcardpayments/creditCardPayments';
+import {isFakeMousedownFromScreenReader} from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-cart',
@@ -18,26 +19,34 @@ export class CartComponent implements OnInit {
 
   constructor(private title: Title, private router: Router, private book: BooksService) {
     this.title.setTitle('GIỏ hàng');
-    render({
-      id: '#paypal',
-      currency: 'VND',
-      value: 'totalAllMoney',
-      onApprove: (details) => {
-        Swal.fire({
-          title: 'Thanh toán thành công',
-          icon: 'success',
-          iconColor: ' #EBA850',
-          timer: 2000
-        });
-      }
-    });
-    this.cart = [];
   }
 
   cart: any = [];
 
+  paypals() {
+    document.getElementById('paypal').innerHTML = '<div id="btnPayPal"></div>';
+    if (this.totalAllMoney > 0) {
+      render({
+        id: '#paypal',
+        currency: 'USD',
+        value: String((this.totalAllMoney / 23000).toFixed(2)),
+        onApprove: (details) => {
+          Swal.fire({
+            title: 'Thanh toán thành công',
+            icon: 'success',
+            iconColor: ' #EBA850',
+            timer: 2000
+          });
+          this.cart = [];
+          this.book.saveCart(this.cart);
+        }
+      });
+    } else {
+    }
+  }
   ngOnInit(): void {
     this.cart = this.book.getCart();
+    this.paypals();
   }
 
   subTotal(cart: any) {

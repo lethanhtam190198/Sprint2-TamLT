@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../service/token-storage.service';
 import {ShareService} from '../service/share.service';
+import {Category} from '../model/category';
+import {CategoryService} from '../service/category.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,16 +17,26 @@ export class HeaderComponent implements OnInit {
   currentUser: string;
   role: string;
   isLoggedIn = false;
+  category: Category[] = [];
 
   constructor(private tokenStorageService: TokenStorageService,
-              private shareService: ShareService) {
+              private shareService: ShareService,
+              private categoryService: CategoryService,
+              private router: Router) {
     this.shareService.getClickEvent().subscribe(() => {
       this.loadHeader();
     });
   }
 
+  getCategory(): void {
+    this.categoryService.getAll().subscribe(category => {
+      this.category = category;
+    });
+  }
+
   ngOnInit(): void {
     this.loadHeader();
+    this.getCategory();
   }
 
   loadHeader(): void {
@@ -38,5 +51,4 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.tokenStorageService.signOut();
   }
-
 }

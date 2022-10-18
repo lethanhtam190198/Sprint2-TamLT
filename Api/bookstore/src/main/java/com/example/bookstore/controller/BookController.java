@@ -137,6 +137,7 @@ public class BookController {
         book.get().setTotalPages(bookDto.getTotalPages());
         book.get().setTranslator(bookDto.getTranslator());
         book.get().setCategory(bookDto.getCategory());
+        book.get().setDiscount(bookDto.getDiscount());
         bookService.save(book.get());
         return new ResponseEntity<>(book.get(), HttpStatus.OK);
     }
@@ -160,5 +161,15 @@ public class BookController {
     @GetMapping("/check/{code}")
     public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
         return new ResponseEntity<>(bookService.existCode(code), HttpStatus.OK);
+    }
+    @GetMapping("/categoryBooks")
+    public ResponseEntity<Page<Book>> getCategoryVn(@RequestParam(defaultValue = "",required = false) String name,
+                                                    @RequestParam(defaultValue = "0",required = false) Integer idCategory,
+                                                    @PageableDefault(value = 8) Pageable pageable){
+        Page<Book> listVn = bookService.getCategoryBook(pageable,idCategory,name);
+        if (listVn.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listVn,HttpStatus.OK);
     }
 }

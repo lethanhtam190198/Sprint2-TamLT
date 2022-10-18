@@ -24,4 +24,6 @@ public interface IBookService {
     Page<Book>vietnameseLiterature(Pageable pageable);
 
     Boolean existCode(String code);
+
+    Page<Book> getCategoryBook(Pageable pageable,Integer idCategory,String name);
 }

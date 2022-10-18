@@ -24,10 +24,8 @@ export class DetailComponent implements OnInit {
   totalPages?: number;
   translator?: string;
   author?: string;
-
-  listBooks1: Books[] = [];
-  listBooks2: Books[] = [];
   cart: any = this.bookService.getCart();
+  book: Books;
 
   constructor(private bookService: BooksService,
               private activatedRoute: ActivatedRoute) {
@@ -42,6 +40,7 @@ export class DetailComponent implements OnInit {
 
   detailBooks(id: number) {
     this.bookService.findById(id).subscribe(detailBooks => {
+      this.book = detailBooks;
       this.name = detailBooks.name;
       this.code = detailBooks.code;
       this.description = detailBooks.description;
@@ -56,10 +55,10 @@ export class DetailComponent implements OnInit {
       this.author = detailBooks.author;
     });
   }
+
   addToCart(book: any) {
     const idx = this.cart.findIndex((item: any) => {
-      // tslint:disable-next-line:triple-equals
-      return item.id == book.id;
+      return item.id === book.id;
     });
     if (idx >= 0) {
       this.cart[idx].quantity += 1;

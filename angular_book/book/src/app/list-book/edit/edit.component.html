@@ -18,7 +18,7 @@
                     *ngIf="bookForm.controls.code.hasError('required') && (bookForm.controls.code.touched)">
                     Vui Lòng Không Để Trống.
                   </mat-error>
-<!--                  <mat-error *ngIf="isExitsCode">Mã Sách Đã Tồn Tại. Vui Lòng Nhập Lại.</mat-error>-->
+                  <!--                  <mat-error *ngIf="isExitsCode">Mã Sách Đã Tồn Tại. Vui Lòng Nhập Lại.</mat-error>-->
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">
@@ -135,7 +135,7 @@
                     Vui Lòng Không Để Trống.
                   </mat-error>
                   <mat-error
-                    *ngIf="bookForm.controls.totalPages.hasError('required') && (bookForm.controls.totalPages.touched || bookForm.controls.totalPages.dirty)">
+                    *ngIf="bookForm.controls.totalPages.hasError('min') && (bookForm.controls.totalPages.touched || bookForm.controls.totalPages.dirty)">
                     Số Trang Sách Phải Lớn Hơn 0.
                   </mat-error>
                 </mat-form-field>
@@ -148,7 +148,7 @@
               <div class="col-lg-6 d-grid">
                 <mat-form-field appearance="outline">
                   <mat-label>Danh Mục <span><i>(*)</i></span></mat-label>
-                  <mat-select formControlName="category">
+                  <mat-select formControlName="category" [compareWith]="compare">
                     <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
                   </mat-select>
                   <mat-error
@@ -157,15 +157,18 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <!--              <div class="col-lg-6 d-grid">-->
-              <!--                <mat-form-field appearance="outline">-->
-              <!--                  <mat-label>Chiết Khấu <span><i>(*)</i></span></mat-label>-->
-              <!--                  <mat-select formControlName="discount">-->
-              <!--                    <mat-option *ngFor="let discount of discounts"-->
-              <!--                                [value]="discount.id">{{discount.percent}}</mat-option>-->
-              <!--                  </mat-select>-->
-              <!--                </mat-form-field>-->
-              <!--              </div>-->
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Chiết Khấu <span><i>(*)</i></span></mat-label>
+                  <mat-select formControlName="discount" [compareWith]="compare">
+                    <mat-option *ngFor="let discount of discounts" [value]="discount">{{discount.percent}}</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="bookForm.controls.discount.hasError('required') && (bookForm.controls.discount.touched || bookForm.controls.discount.dirty)">
+                    Vui Lòng Không Để Trống.
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
           </div>
 
@@ -175,7 +178,10 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Mô Tả <span><i>(*)</i></span></mat-label>
                   <textarea matInput type="textarea" rows="5" formControlName="description"></textarea>
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error
+                    *ngIf="bookForm.controls.description.hasError('required') && (bookForm.controls.description.touched || bookForm.controls.description.dirty)">
+                    Vui Lòng Không Để Trống.
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -185,7 +191,9 @@
             <div class="row">
               <div class="col-lg-12 d-grid">
                 <label class="form-label">Chọn Ảnh <span><i>(*)</i></span></label>
-                <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Nhấn Vào Đây Để Chọn Ảnh</button>
+                <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Nhấn Vào Đây Để Chọn
+                  Ảnh
+                </button>
                 <input hidden (change)="selectFile($event); onFileSelected($event)" #fileInput type="file">
                 <img *ngIf="!editImageState" [src]="bookForm.get('image').value" width="100%" height="auto" alt="">
                 <img class="form-control mt-2" [src]="url" *ngIf="editImageState" width="auto" height="auto" alt="">
@@ -204,7 +212,8 @@
             <a routerLink="">
               <button mat-raised-button color="warn"> Quay Lại</button>
             </a>
-            <button *ngIf="loader" type="submit" mat-raised-button color="primary" (click)="submit()" [disabled]="bookForm.invalid"> Chỉnh Sửa
+            <button *ngIf="loader" type="submit" mat-raised-button color="primary" (click)="submit()"
+                    [disabled]="bookForm.invalid"> Chỉnh Sửa
             </button>
             <button *ngIf="!loader" mat-raised-button color="primary" disabled>
               <div class="spinner-border spinner-border-sm me-1"></div>
