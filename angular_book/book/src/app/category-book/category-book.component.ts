@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Books} from '../model/books';
 import {BooksService} from '../service/books.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {TokenStorageService} from '../service/token-storage.service';
+import {ShareService} from '../service/share.service';
 
 @Component({
   selector: 'app-category-book',
@@ -10,19 +14,15 @@ import {BooksService} from '../service/books.service';
 export class CategoryBookComponent implements OnInit {
   listVietnameseLiterature: Books[] = [];
 
-  constructor(private bookService: BooksService) {
+  constructor(private bookService: BooksService,
+              private router: Router,
+              private activeRouter: ActivatedRoute,
+              private toast: ToastrService,
+              private tokenStorageService: TokenStorageService,
+              private shareService: ShareService) {
   }
 
   ngOnInit(): void {
-    this.getVietnameseLiterature();
   }
 
-  private getVietnameseLiterature() {
-    this.bookService.getVietnameseLiterature().subscribe((books: any) => {
-      if (books != null) {
-        this.listVietnameseLiterature = books.content;
-        console.log(books);
-      }
-    });
-  }
 }

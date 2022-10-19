@@ -61,7 +61,7 @@ public class BookSerive implements IBookService {
 
     @Override
     public Page<Book> getCategoryBook(Pageable pageable, Integer idCategory, String name) {
-        return bookRepository.getCategoryBook(pageable,idCategory,name);
+        return bookRepository.getCategoryBook(pageable,idCategory,'%'+name+'%');
     }
 
 }

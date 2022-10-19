@@ -51,4 +51,8 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.tokenStorageService.signOut();
   }
+
+  getCategoryBook(id: number) {
+    this.router.navigateByUrl(`categoryBooks/` + id + `/`);
+  }
 }
