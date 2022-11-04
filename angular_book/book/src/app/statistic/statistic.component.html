@@ -1,0 +1,19 @@
+<div class="row container-fluid" style="height: 100px"></div>
+<form [formGroup]="form" (submit)="submitForm()">
+  <div class="container">
+    <div class="row">
+      <div class="col-2"><label>Ngày bắt đầu:
+        <input type="date" class="form-control" formControlName="startDate">
+      </label>
+        <label style="margin-top: 10px">Ngày kết thúc:
+          <input type="date" class="form-control" formControlName="endDate">
+        </label>
+        <button style="margin-top: 10px" class="btn btn-success" type="submit">Thống kê</button>
+      </div>
+      <div class="col-10" style="max-height: 500px">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+</form>
+

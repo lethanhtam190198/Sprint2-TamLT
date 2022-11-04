@@ -1,13 +1,14 @@
 package com.example.bookstore.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String dateCreate;
+    private LocalDate dateCreate;
     private boolean status;
 
     @ManyToOne
@@ -18,7 +19,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Integer id, String dateCreate, boolean status, Customer customer) {
+    public Cart(Integer id, LocalDate dateCreate, boolean status, Customer customer) {
         this.id = id;
         this.dateCreate = dateCreate;
         this.status = status;
@@ -33,11 +34,11 @@ public class Cart {
         this.id = id;
     }
 
-    public String getDateCreate() {
+    public LocalDate getDateCreate() {
         return dateCreate;
     }
 
-    public void setDateCreate(String dateCreate) {
+    public void setDateCreate(LocalDate dateCreate) {
         this.dateCreate = dateCreate;
     }
 

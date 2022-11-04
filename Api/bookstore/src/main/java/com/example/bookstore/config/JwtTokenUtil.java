@@ -23,24 +23,10 @@ public class JwtTokenUtil implements Serializable {
     @Value("${jwt.secret}")
     private String secret;
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: retrieve username from jwt token
-     * @param token
-     * @return: getClaimFromToken(token, Claims::getSubject)
-     */
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: retrieve expiration date from jwt token
-     * @param token
-     * @return: getClaimFromToken(token, Claims::getSubject)
-     */
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
@@ -50,48 +36,20 @@ public class JwtTokenUtil implements Serializable {
         return claimsResolver.apply(claims);
     }
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: for retrieveing any information from token we will need the secret key
-     * @param token
-     * @return: Jwts
-     */
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: check if the token has expired
-     * @param token
-     * @return: Date
-     */
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: generate token for user
-     * @param userDetails
-     * @return: doGenerateToken(claims, name)
-     */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: Define  claims of the token, like Issuer, Expiration, Subject, and the ID
-     * @param subject
-     * @return: token cipher chain
-     */
     private String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
@@ -99,14 +57,6 @@ public class JwtTokenUtil implements Serializable {
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
-    /**
-     * Created by: SangNH
-     * Date created: 08/09/2022
-     * Function: validate token
-     * @param userDetails
-     * @param token
-     * @return: error
-     */
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

@@ -25,6 +25,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {ToastrModule} from 'ngx-toastr';
 import {MatIconModule} from '@angular/material/icon';
 import { CategoryBookComponent } from './category-book/category-book.component';
+import { DetailCustomerComponent } from './detail-customer/detail-customer.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { CategoryBookComponent } from './category-book/category-book.component';
     ListBookComponent,
     CreateComponent,
     EditComponent,
-    CategoryBookComponent
+    CategoryBookComponent,
+    DetailCustomerComponent,
+    CartDetailComponent,
+    StatisticComponent
   ],
     imports: [
         BrowserModule,

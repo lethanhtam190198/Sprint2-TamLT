@@ -1,42 +1,142 @@
 <main id="main"style="margin-top: 70px">
   <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-   <div class="container">
-     <div class="row">
-       <div id="carouselExampleInterval" class="carousel slide carousel-fade container col-md-8" data-bs-ride="carousel">
-         <div class="carousel-inner">
-           <div class="carousel-item active" data-bs-interval="2000">
-             <img style="border-radius: 15px ; height: 300px ; width: 100px"  src="https://cdn0.fahasa.com/media/magentothem/banner7/VPP_Main_banner_T10_840x320.jpg" class="d-block w-100" alt="...">
-           </div>
-           <div class="carousel-item" data-bs-interval="1000">
-             <img style="border-radius: 15px; height: 300px ; width: 100px" src="https://cdn0.fahasa.com/media/magentothem/banner7/dongamamxanh_resize_840x320.jpg" class="d-block w-100" alt="...">
-           </div>
-           <div class="carousel-item" data-bs-interval="">
-             <img style="border-radius: 15px; height: 300px ; width: 100px" src="https://cdn0.fahasa.com/media/magentothem/banner7/Megasale_Main_Banner_Slide_840x320.jpg" class="d-block w-100" alt="...">
-           </div>
-         </div>
-         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                 data-bs-slide="prev">
-           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-           <span class="visually-hidden">Previous</span>
-         </button>
-         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                 data-bs-slide="next">
-           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-           <span class="visually-hidden">Next</span>
-         </button>
-       </div>
-       <div class="col-md-4">
-         <a href="#">
-           <div class="card text-white" style="border-radius: 20px; height: 300px">
-             <img style="border-radius: 20px; height: 300px " src="https://cdn0.fahasa.com/media/wysiwyg/Thang-09-2022/MocaT1022_310x210png.png" class="card-img" alt="...">
-             </div>
-         </a>
-       </div>
-     </div>
-   </div>
+  <section class="slider_section ">
+    <div id="customCarousel1" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <body>
+        <div id="container">
+          <div id="header">
+            <h1>THE BOOK STORE</h1>
+          </div>
+          <div id="sideheader"></div>
+          <div id="left_column">
+            <div class="left_column_boxes">
+              <h4>Đường dẫn</h4>
+              <div id="navcontainer">
+                <ul id="navlist">
+                  <li id="active"><a href="#" id="current" routerLink="">Trang chủ</a></li>
+                  <li><a href="#" routerLink="/history">Lịch sử giao dịch</a></li>
+                  <li><a href="#" routerLink="/cart">Giỏ hàng</a></li>
+                  <li><a href="#" routerLink="/detailCustomer">Thông tin khách hàng</a></li>
+                  <li><a href="#" routerLink="/listBook">Quản lí</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="left_column_boxes">
+              <h4>News</h4>
+              <dl>
+                <dt class="news">Đọc sách giúp nâng cao hiểu biết</dt>
+                <dd>Sách là nguồn tri thức vô hạn, giúp chúng ta có thể bổ sung kiến thức và nâng cao vốn hiểu biết
+                  của chính mình. Ở sách, bạn có thể tìm tòi thêm về văn hoá - chính trị, kinh tế - xã hội,
+                  lịch sử hoặc đơn giản hơn là phong cách sống,... Những điều tưởng chừng nhỏ nhặt nhất trong
+                  cuộc sống như cách nói lời cảm ơn, xin lỗi cũng được truyền tải nhẹ nhàng và tinh tế qua những
+                  trang sách. Có thể nói, sách đóng vai trò “bổ trợ” cho mọi hoạt động giáo dục về nhận thức và ý
+                  thức. Đây cũng là lý do chính người ta đưa văn hoá đọc vào chương trình giáo dục mầm non, giúp thế
+                  hệ trẻ hình thành thói quen đọc sách ngay từ khi còn nhỏ.
+                </dd>
+                <dt class="news">Tăng cường kỹ năng tư duy, phân tích, tập trung</dt>
+                <dd>Một trong những tác dụng của việc đọc sách chính là khả năng tăng cường trí nhớ,
+                  sự tập trung, cải thiện tư duy và kỹ năng phân tích tình huống. Trong quá trình đọc,
+                  não bộ và mọi giác quan được đưa về trạng thái tập trung cao độ
+                </dd>
+              </dl>
+            </div>
+            <div class="left_column_boxes">
+              <h4>Contact us</h4>
+              <form id="form1" method="post" class="contact_us" action="#">
+                <p>
+                  <label>Name
+                    <input type="text" class="fields_contact_us" name="textfield"/>
+                  </label>
+                  <label>E-mail
+                    <input type="text" class="fields_contact_us" name="textfield1"/>
+                  </label>
+                  <label> Your question:
+                    <textarea name="textarea" cols="" rows=""></textarea>
+                  </label>
+                  <label>
+                    <input type="submit" class="submit_button_contact" name="Submit1"
+                           value="Submit"/>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <p class="center">Created by Dieter Schneider 2007 <a href="http://www.csstemplateheaven.com">www.csstemplateheaven.com</a>
+            </p>
+          </div>
+          <div id="content">
+            <h3>Đọc sách giúp mở rộng vốn từ.</h3>
+            <p> Mỗi tác giả, mỗi chủ đề lại có cách dùng từ và lối biểu đạt riêng.
+              Do đó, quá trình đọc sách cũng đồng thời giúp chúng ta bổ sung thêm
+              vốn từ vựng của mình, học hỏi thêm nhiều thuật ngữ mới. Từ đây, văn
+              phong của bạn cũng được cải thiện rõ rệt qua từng ngày.. </p>
+            <h3>Đọc sách giúp giảm căng thẳng</h3>
+            <p>Có thể giảm được căng thẳng, áp lực cho người đọc có lẽ là điều ít ai biết
+              khi nói đến tác dụng của sách. Những đầu sách như tiểu thuyết, truyện cười,
+              truyện về cuộc đời của những danh nhân,... là “liều thuốc” bổ trợ cực mạnh
+              cho tâm trạng của chúng ta khi bị căng thẳng - stress. Lối viết giản dị, mộc mạc,
+              hóm hỉnh của những cuốn sách này sẽ giúp bạn trở nên thư thái hơn, làm cân bằng trạng thái
+              cảm xúc đang ngổn ngang, khó chịu.. </p>
+            <h3>Kích thích tinh thần.</h3>
+            <p>Một trong những lợi ích của đọc sách được nhiều người công nhận chính là khả năng kích thích
+              tinh thần. Khi gặp phải một số vấn đề trong đời sống, công việc, học tập, chúng ta thường
+              có thói quen tìm đến những thứ giúp bình ổn tâm trạng. Và sách chính là một người bạn tâm
+              giao trong những phút giây như vậy. Chọn một cuốn sách bạn yêu hay những chủ đề sách truyền
+              cảm hứng vào những lúc bạn cần sự tĩnh lặng, ngồi ở một góc nào đó vừa đọc vừa suy ngẫm sẽ
+              giúp bạn cảm thấy thoải mái hơn bao giờ hết.. </p>
+            <h3>Đọc sách giúp kéo dài tuổi thọ.</h3>
+            <p>Nghe có vẻ khó tin nhưng thực tế, tác dụng đọc sách không chỉ dừng lại ở việc mở mang
+              tri thức, cải thiện tinh thần mà đọc sách còn có thể giúp bạn kéo dài tuổi thọ.
+              Theo một nghiên cứu khoa học được đăng tải trên tạp chí Social Science & Medicine:
+              đọc sách 30 phút mỗi ngày sẽ giúp bạn nâng cao tuổi thọ từ 2 đến 3 năm. Đồng thời
+              việc đọc cũng giúp bạn cải thiện chất lượng cuộc sống một cách đáng kể.. </p>
+            <h3>Điều khiển cảm xúc hiệu quả</h3>
+            <p>Lợi ích đọc sách tiếp theo chính là khả năng điều khiển cảm xúc.
+              Nói một cách cụ thể, đọc sách giúp bạn “sống chậm” lại, nhận thức
+              sâu hơn về các vấn đề gặp phải. Qua đó giúp bạn bình tâm suy xét và
+              đưa phán đoán hợp lý trước mọi tình huống. </p>
+            <h3>Xây dựng thói quen lành mạnh</h3>
+            <p>Một trong những lợi ích của đọc sách khác là giúp người đọc xây dựng một
+              lối sống lành mạnh. Bạn sẽ ít bị ảnh hưởng bởi các trò tiêu khiển độc hại,
+              hạn chế tiếp xúc với các thiết bị điện tử như máy tính, điện thoại. Nhờ đọc
+              sách bạn sẽ rèn được thói quen đi ngủ sớm, dậy sớm, tỉnh táo và sắp xếp thời gian biểu hợp lý hơn.. </p>
+          </div>
+          <div id="footer"></div>
+        </div>
+        </body>
+
+        <div class="carousel-item" data-bs-interval="3000">
+          <div class="container ">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="detail-box">
+                  <h5>
+                    Bookstore
+                  </h5>
+                  <h1>
+                    Dành cho tất cả của bạn <br>
+                    nhu cầu đọc
+                  </h1>
+                  <p>
+                    Điều rất quan trọng đối với khách hàng là phải chú ý đến quá trình adipiscing.
+                    Những người muốn thường để lại nỗi đau cho các tùy chọn. </p>
+                  <a routerLink="/book/list/1">
+                    Đọc Thêm
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="img-box">
+                  <img src="assets/images/slider-img.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="why-us" class="why-us">
+  <section id="why-us" class="why-us" style="margin-top: 40px">
     <div class="container" data-aos="fade-up">
       <h2 style="color: #5fcf80;font-family: Courier new"><label><strong>GIẢM GIÁ</strong></label></h2>
       <div class="row">
@@ -71,7 +171,7 @@
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                       </svg></a></li>
-                      <li><a (click)="addToCart(list1)" href="#" data-tip="Add to wishlist"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
+                      <li><a (click)="addToCart(list1)"  href="#" data-tip="Add to wishlist"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
                         <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
                         <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                       </svg></a></li>
@@ -80,7 +180,7 @@
                   <div style="background-color: #f1f1f1; height: 100px" class="product-content">
                     <div style="height: 80%;"> <h5 style="color: #5fcf80"  ><a href="#" style="font-family: Courier New; font-size: medium">{{list1.name}}</a></h5></div>
 
-                    <div class="badge rounded-pill text-bg-danger" style="color: #ed3c0d; font-family: Cambria">{{list1.price | currency : 'VND'}}</div>
+                    <div class=" rounded-pill " style="color: #ed3c0d; font-family: Cambria">{{list1.price | currency : 'VND'}}</div>
                   </div>
                 </div>
               </div>
@@ -121,7 +221,7 @@
                   </div>
                   <div style="background-color: #f1f1f1; height: 100px" class="product-content">
                     <div style="height: 80%"><h5 style="color: #5fcf80"  ><a  style="font-family: Courier New;font-size: medium" >{{list2.name}}</a></h5></div>
-                    <div class="badge rounded-pill text-bg-danger" style="color: red ; font-family: Cambria">{{list2.price |currency: 'VND'}}</div>
+                    <div class="rounded-pill" style="color: red ; font-family: Cambria">{{list2.price |currency: 'VND'}}</div>
                   </div>
                 </div>
               </div>

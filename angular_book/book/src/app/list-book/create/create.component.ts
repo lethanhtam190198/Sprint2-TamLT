@@ -12,6 +12,7 @@ import {Category} from '../../model/category';
 import {Discount} from '../../model/discount';
 import {Books} from '../../model/books';
 import {finalize} from 'rxjs/operators';
+import {TokenStorageService} from '../../service/token-storage.service';
 
 @Component({
   selector: 'app-create',
@@ -31,6 +32,10 @@ export class CreateComponent implements OnInit {
   isExitsCode = false;
   categories: Category[] = [];
   discounts: Discount[] = [];
+  currentUser: string;
+  role: string;
+  isLoggedIn = false;
+  username: string;
 
   bookForm: FormGroup = new FormGroup({
     id: new FormControl('', [Validators.required]),
@@ -40,11 +45,11 @@ export class CreateComponent implements OnInit {
     dimension: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required, Validators.min(1)]),
     publisher: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [Validators.required, Validators.min(1)]),
     releaseDate: new FormControl('', [Validators.required]),
-    totalPages: new FormControl('', [Validators.required]),
+    totalPages: new FormControl('', [Validators.required, Validators.min(1)]),
     translator: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
     discount: new FormControl('', [Validators.required])
@@ -56,7 +61,8 @@ export class CreateComponent implements OnInit {
               private storage: AngularFireStorage,
               private toast: ToastrService,
               private router: Router,
-              private title: Title) {
+              private title: Title,
+              private tokenStorageService: TokenStorageService) {
     this.title.setTitle('Thêm Mới Sách');
   }
 
@@ -190,5 +196,13 @@ export class CreateComponent implements OnInit {
         console.log(this.isExitsCode);
       }
     );
+  }
+  loadRole(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.currentUser = this.tokenStorageService.getUser().username;
+      this.role = this.tokenStorageService.getUser().roles[0];
+      this.username = this.tokenStorageService.getUser().username;
+    }
+    this.isLoggedIn = this.username != null;
   }
 }

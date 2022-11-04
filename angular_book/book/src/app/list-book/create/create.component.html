@@ -2,7 +2,7 @@
   <div class="container py-5">
     <div class="row ">
       <div class="col-lg-2"></div>
-      <form class="col-lg-8" [formGroup]="bookForm">
+      <form class="col-lg-8" [formGroup]="bookForm" >
         <div class="mb-3 text-center">
           <h2><b>Thêm Mới Sách</b></h2>
         </div>
@@ -16,7 +16,7 @@
                   <input matInput type="text" placeholder="Nhập Mã Sách" formControlName="code" (keyup)="checkCode($event.target.value)">
                   <mat-error>
                     <p *ngIf="bookForm.controls.code.hasError('required') && bookForm.controls.code.touched">Không được để trống</p>
-                    <p *ngIf="bookForm.controls.code.hasError('required') && isExitsCode == true">Mã sách đã tồn tại.</p>
+<!--                    <p *ngIf="bookForm.controls.code.hasError('required') && isExitsCode == true">Mã sách đã tồn tại.</p>-->
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -47,7 +47,9 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Dịch Giả <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" placeholder="Nhập Tên Dịch Giả" formControlName="translator">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.translator.hasError('required') && bookForm.controls.translator.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -59,14 +61,19 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Kích Thước (cm) <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" placeholder="Nhập Kích Thước" formControlName="dimension">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.dimension.hasError('required') && bookForm.controls.dimension.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">
                 <mat-form-field appearance="outline">
                   <mat-label>Giá Sách <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" placeholder="Nhập Giá Sách" formControlName="price">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.price.hasError('required') && bookForm.controls.price.touched">Không được để trống</p>
+                    <p *ngIf="bookForm.controls.price.hasError('min')">Giá phải lớn hơn 0</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -78,14 +85,18 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Nhà Xuất Bản <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" placeholder="Nhập Nhà Xuất Bản" formControlName="publisher">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.publisher.hasError('required') && bookForm.controls.publisher.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">
                 <mat-form-field appearance="outline">
                   <mat-label>Ngày Xuất Bản <span><i>(*)</i></span></mat-label>
                   <input matInput type="date" formControlName="releaseDate">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.releaseDate.hasError('required') && bookForm.controls.releaseDate.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -97,14 +108,20 @@
                 <mat-form-field appearance="outline">
                   <mat-label>Số Lượng <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" formControlName="quantity">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.quantity.hasError('required') && bookForm.controls.quantity.touched">Không được để trống</p>
+                    <p *ngIf="bookForm.controls.quantity.hasError('min')">Số lượng phải lớn hơn 0</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">
                 <mat-form-field appearance="outline">
                   <mat-label>Tổng Số Trang <span><i>(*)</i></span></mat-label>
                   <input matInput type="text" formControlName="totalPages">
-                  <!--        <mat-error></mat-error>-->
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.totalPages.hasError('required') && bookForm.controls.totalPages.touched">Không được để trống</p>
+                    <p *ngIf="bookForm.controls.totalPages.hasError('min')">Số trang phải lớn hơn 0</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -118,6 +135,9 @@
                   <mat-select formControlName="category">
                     <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
                   </mat-select>
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.category.hasError('required') && bookForm.controls.category.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-lg-6 d-grid">
@@ -127,36 +147,13 @@
                     <mat-option *ngFor="let discount of discounts"
                                 [value]="discount.id">{{discount.percent}}%</mat-option>
                   </mat-select>
+                  <mat-error>
+                    <p *ngIf="bookForm.controls.discount.hasError('required') && bookForm.controls.discount.touched">Không được để trống</p>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
           </div>
-
-          <!--          <div class="mb-3">-->
-          <!--            <div class="row">-->
-          <!--              <div class="col-lg-6 d-grid col">-->
-          <!--                <mat-form-field appearance="outline">-->
-          <!--                  <mat-label>Mô Tả <span><i>(*)</i></span></mat-label>-->
-          <!--                  <textarea matInput type="textarea" rows="auto" formControlName="description"></textarea>-->
-          <!--                  &lt;!&ndash;        <mat-error></mat-error>&ndash;&gt;-->
-          <!--                </mat-form-field>-->
-          <!--              </div>-->
-          <!--              <div class="col-lg-6">-->
-          <!--&lt;!&ndash;                <label>Chọn Ảnh <span><i>(*)</i></span></label>&ndash;&gt;-->
-          <!--                <button class="d-grid w-100" type="button" mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>-->
-          <!--                <input hidden (change)="selectFile($event); onFileSelected($event)" #fileInput type="file">-->
-          <!--                <img *ngIf="!editImageState" [src]="bookForm.get('image').value" width="100%" height="auto" alt="">-->
-          <!--                <img class="form-control mt-2" [src]="url" *ngIf="editImageState" width="auto" height="auto" alt="">-->
-          <!--                <div class="form-text" *ngIf="checkImgSize == true">Kích thước ảnh quá lớn !!</div>-->
-          <!--                <div class="form-text" *ngIf="checkImg == true && checkImgSize == false && regexImageUrl == false">Vui-->
-          <!--                  lòng chọn ảnh.-->
-          <!--                </div>-->
-          <!--                <div class="form-text" *ngIf="regexImageUrl == true && checkImgSize == false">Chỉ chấp nhận ảnh có định-->
-          <!--                  dạng .jpg.-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
 
           <div class="mb-3">
             <div class="row">
@@ -197,7 +194,7 @@
           </div>
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-around">
-            <a routerLink="">
+            <a routerLink="/listBook">
               <button mat-raised-button color="warn"> Quay Lại</button>
             </a>
             <button *ngIf="loader" type="submit" mat-raised-button color="primary" (click)="submit()"> Thêm mới

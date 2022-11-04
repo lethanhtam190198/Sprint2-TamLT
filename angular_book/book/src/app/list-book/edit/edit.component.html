@@ -2,7 +2,7 @@
   <div class="container py-5">
     <div class="row ">
       <div class="col-lg-2"></div>
-      <form class="col-lg-8" [formGroup]="bookForm">
+      <form class="col-lg-8" [formGroup]="bookForm" *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1">
         <div class="mb-3 text-center">
           <h2><b>Chỉnh Sửa Sách</b></h2>
         </div>

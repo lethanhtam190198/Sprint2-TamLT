@@ -4,7 +4,9 @@ import Swal from 'sweetalert2';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {render} from 'creditcardpayments/creditCardPayments';
-import {isFakeMousedownFromScreenReader} from '@angular/cdk/a11y';
+import {CustomerService} from '../service/customer.service';
+import {TokenStorageService} from '../service/token-storage.service';
+import {CartDetailService} from '../service/cart-detail.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,21 +18,36 @@ export class CartComponent implements OnInit {
   totalMoney: number = this.book.getCartTotalMany();
   totalAllMoney: number = this.book.totalMoneyAll();
   name: string;
+  customer: any;
+  username: string;
+  users: any = [];
 
-  constructor(private title: Title, private router: Router, private book: BooksService) {
-    this.title.setTitle('GIỏ hàng');
+  constructor(private title: Title,
+              private router: Router,
+              private book: BooksService,
+              private customerService: CustomerService,
+              private tokenStorageService: TokenStorageService,
+              private cartDetailService: CartDetailService) {
+    this.title.setTitle('Giỏ hàng');
   }
 
-  cart: any = [];
+  cart: any = [] = [];
 
   paypals() {
-    document.getElementById('paypal').innerHTML = '<div id="btnPayPal"></div>';
+    // document.getElementById('paypal').innerHTML = '<div id="btnPayPal"></div>';
+    const username = this.tokenStorageService.getUser().username;
     if (this.totalAllMoney > 0) {
       render({
         id: '#paypal',
         currency: 'USD',
         value: String((this.totalAllMoney / 23000).toFixed(2)),
         onApprove: (details) => {
+          for (const item of this.cart) {
+            item.book = {
+              id: item.id
+            };
+          }
+          this.cartDetailService.saveCartDetail(username, this.cart).subscribe();
           Swal.fire({
             title: 'Thanh toán thành công',
             icon: 'success',
@@ -44,9 +61,11 @@ export class CartComponent implements OnInit {
     } else {
     }
   }
+
   ngOnInit(): void {
     this.cart = this.book.getCart();
     this.paypals();
+    this.getCustomer();
   }
 
   subTotal(cart: any) {
@@ -72,7 +91,6 @@ export class CartComponent implements OnInit {
       timer: 2000
     });
     this.router.navigate(['/login']);
-
   }
 
   updateQuantity(idx: number, ev: any) {
@@ -155,7 +173,7 @@ export class CartComponent implements OnInit {
       buttonsStyling: false
     });
     swalWithBootstrapButtons.fire({
-      title: 'Bạn có chắc không?',
+      title: 'Bạn có chắc chắn muốn xoá tất cả không?',
       text: 'Hành động này không thể hoàn tác!',
       icon: 'warning',
       showCancelButton: true,
@@ -184,4 +202,16 @@ export class CartComponent implements OnInit {
     });
   }
 
+  getCustomer() {
+    this.loadHeader();
+    this.customerService.getCustomer(this.username).subscribe(customers => {
+      this.customer = customers;
+    });
+  }
+
+  loadHeader(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.username = this.tokenStorageService.getUser().username;
+    }
+  }
 }

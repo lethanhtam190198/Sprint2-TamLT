@@ -18,4 +18,5 @@ export interface Books {
   category?: Category;
   discount?: Discount;
   status?: boolean;
+  sumQuantity?: number;
 }

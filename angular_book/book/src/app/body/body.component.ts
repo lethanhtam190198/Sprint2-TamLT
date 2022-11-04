@@ -3,6 +3,8 @@ import {BooksService} from '../service/books.service';
 import {Books} from '../model/books';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import {TokenStorageService} from '../service/token-storage.service';
+import {ShareService} from '../service/share.service';
 
 @Component({
   selector: 'app-body',
@@ -18,13 +20,20 @@ export class BodyComponent implements OnInit {
   author: any;
   name: any;
   cart: any = this.bookService.getCart();
+  role: string;
+  isLoggedIn = false;
+  currentUser: string;
+  username: string;
 
-  constructor(private bookService: BooksService) {
+  constructor(private bookService: BooksService,
+              private tokenStorageService: TokenStorageService,
+              private shareService: ShareService) {
   }
 
   ngOnInit(): void {
     this.getAll1();
     this.getAll2();
+    this.loadHeader();
   }
 
   private getAll1() {
@@ -71,5 +80,17 @@ export class BodyComponent implements OnInit {
       iconColor: ' #EBA850',
       timer: 1000
     });
+  }
+  loadHeader(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.currentUser = this.tokenStorageService.getUser().username;
+      this.role = this.tokenStorageService.getUser().roles[0];
+      this.username = this.tokenStorageService.getUser().username;
+    }
+    this.isLoggedIn = this.username != null;
+  }
+
+  logOut() {
+    this.tokenStorageService.signOut();
   }
 }

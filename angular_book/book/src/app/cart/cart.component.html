@@ -1,6 +1,7 @@
-<div class="card" style="margin-top: 100px">
-  <div class="row" >
-    <div class="col-md-9 cart" >
+<div class="row container-fluid" style="height: 130px; background-color:white"></div>
+<div class="card">
+  <div class="row">
+    <div class="col-md-9 cart">
       <div class="title">
         <div class="row">
           <div class="col-md-1">#</div>
@@ -10,18 +11,26 @@
           <div class="col-md-2 align-self-center text-right text-muted" style="text-align: right">Đơn giá</div>
           <div class="col-md-2 align-self-center text-right text-muted" style="text-align: right">Thành tiền</div>
           <div class="col-md-1 align-self-center text-right text-muted" style="text-align: center">
-            <a (click)="clearCart()" >  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-                 viewBox="0 0 16 16">
-              <path
-                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd"
-                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-            </svg></a>
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                   viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd"
+                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+            </a>
           </div>
+        </div>
+        <div class="row m-4" style="height: 100px" *ngIf="cart.length===0">
+          <h3 class="col-12 text-center text-muted">Gio hang dang rong</h3>
+          <svg routerLink="" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+          </svg>
         </div>
       </div>
       <div class="row border-top border-bottom">
-        <div class="row main align-items-center" *ngFor="let cart of cart; index as i" >
+        <div class="row main align-items-center" *ngFor="let cart of cart; index as i">
           <div class="col-md-1">{{i + 1}}</div>
           <div class="col-md-2" style="text-align: left">
             <img src="{{cart.image}}" alt="">
@@ -29,7 +38,8 @@
           <div class="col-md-2" style="text-align: left">{{cart.name}}</div>
           <div class="col-md-2" style="text-align: center">
             <button class="button" (click)="reduce(i,cart.quantity)">-</button>
-            {{cart.quantity}}
+            <input (change)="updateQuantity(i,$event)" [value]="cart.quantity"
+                   style="width: 40px; border: none;text-align: center">
             <button class="button" (click)="up(i,cart.quantity)">+</button>
           </div>
           <div class="col-md-2" style="text-align: right">{{cart.price | currency: 'VND'}}</div>
@@ -50,41 +60,39 @@
         <a [routerLink]="['']" style="text-decoration: none">
           <div class="back-to-shop"><span class="text-muted">Trở về trang chủ</span></div>
         </a>
-        <a (click)="clearCart()" style="text-decoration: none">
-          <div class="back-to-shop"><span class="text-muted">Xoá tất cả</span></div>
-        </a>
+        <!--        <a (click)="clearCart()" style="text-decoration: none">-->
+        <!--          <div class="back-to-shop"><span class="text-muted">Xoá tất cả</span></div>-->
+        <!--        </a>-->
       </div>
     </div>
     <div class="col-md-3 summary">
       <div><h3><b>Thanh toán</b></h3></div>
       <hr>
       <div class="row">
-        <div class="col" style="padding-left:0;"><strong>Nguyễn Văn A</strong></div>
+        <div class="col" style="padding-left:0;"><strong>{{customer.name}}</strong></div>
       </div>
       <div class="row">
-        <div class="col" style="padding-left:0;"><strong>07551651651</strong></div>
+        <div class="col" style="padding-left:0;"><strong>{{customer.phone}}</strong></div>
       </div>
       <div class="row">
-        <div class="col" style="padding-left:0;">295 ,Nguyễn Tất Thành , Hải Châu, Đà Nẵng</div>
+        <div class="col" style="padding-left:0;">{{customer.address}}</div>
       </div>
-      <form>
-        <p>Đơn vị ship</p>
-        <select>
-          <option class="text-muted">Giao hàng tiết kiệm</option>
-          <option class="text-muted">Shoppe food</option>
-          <option class="text-muted">Tiki</option>
-        </select>
-      </form>
-      <div class="row">
+<!--      <form>-->
+<!--        <p>Đơn vị ship</p>-->
+<!--        <select>-->
+<!--          <option class="text-muted">Giao hàng tiết kiệm</option>-->
+<!--          <option class="text-muted">Shoppe food</option>-->
+<!--          <option class="text-muted">Tiki</option>-->
+<!--        </select>-->
+<!--      </form>-->
+      <div class="row" style="margin-top: 15%">
         <div class="col"><strong>Tổng tiền:</strong></div>
         <div class="col text-right" style="color: red"> {{totalMoneyAll(cart) | currency: 'VND'}}</div>
       </div>
-<!--      <button type="button" class="btn btn-danger" style="border-radius: 15px">Mua hàng</button>-->
+      <!--      <button type="button" class="btn btn-danger" style="border-radius: 15px">Mua hàng</button>-->
       <div style="margin-top: 10px" id="paypal">
       </div>
     </div>
   </div>
 </div>
-<div>
 
-</div>

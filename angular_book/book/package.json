@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
+    "angular-chart.js": "^1.1.1",
     "boostrap": "^5.2.0",
     "bootstrap": "^5.2.0",
     "creditcardpayments": "^1.0.3",
@@ -31,7 +32,9 @@
     "rxjs": "~6.5.4",
     "sweetalert2": "^11.4.37",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "html2pdf.js": "^0.10.1",
+    "chart.js": "^3.8.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.7",

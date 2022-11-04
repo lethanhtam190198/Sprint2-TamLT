@@ -12,6 +12,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Title} from '@angular/platform-browser';
 import {Books} from '../../model/books';
 import {finalize} from 'rxjs/operators';
+import {TokenStorageService} from '../../service/token-storage.service';
 
 @Component({
   selector: 'app-edit',
@@ -29,6 +30,10 @@ export class EditComponent implements OnInit {
   msg = '';
   loader = true;
   isExitsCode = false;
+  currentUser: string;
+  role: string;
+  isLoggedIn = false;
+  username: string;
 
   bookForm: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -59,7 +64,8 @@ export class EditComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private toast: ToastrService,
               private router: Router,
-              private title: Title) {
+              private title: Title,
+              private tokenStorageService: TokenStorageService) {
     this.title.setTitle('Chỉnh Sửa Sách');
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
       this.id = +param.get('id');
@@ -92,6 +98,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.getCategory();
     this.getDiscount();
+    this.loadRole();
   }
 
   getCategory(): void {
@@ -233,5 +240,13 @@ export class EditComponent implements OnInit {
   }
   compare(value, option): boolean {
     return value.id === option.id;
+  }
+  loadRole(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.currentUser = this.tokenStorageService.getUser().username;
+      this.role = this.tokenStorageService.getUser().roles[0];
+      this.username = this.tokenStorageService.getUser().username;
+    }
+    this.isLoggedIn = this.username != null;
   }
 }

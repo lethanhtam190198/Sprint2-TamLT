@@ -6,7 +6,7 @@
         <div class="row" style="display: flex;justify-content: center">
           <div class="col-lg-5 mt-5">
             <div class="card mb-3">
-              <img class="card-img img-fluid" src="{{image}}" >
+              <img class="card-img img-fluid" src="{{image}}">
             </div>
           </div>
           <div class="col-lg-7 mt-5">
@@ -48,7 +48,7 @@
                     <p>Ngày Phát Hành: </p>
                   </li>
                   <li class="list-inline-item w-50">
-                    <p class="text-muted"><strong>{{releaseDate}}</strong></p>
+                    <p class="text-muted"><strong>{{releaseDate | date: 'dd/MM/yyyy'}}</strong></p>
                   </li>
                 </ul>
 
@@ -61,20 +61,24 @@
                     <div class="col-auto">
                       <p class="h3 py-2 text-danger">{{price | currency : 'VND'}}</p>
                       <ul class="list-inline pb-3">
-                        <li style="color: #EBA850" class="list-inline-item text-right">
-                          Số lượng:
-                          <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                        </li>
-                        <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >-</button></li>
-                        <li class="list-inline-item"><button class="btn btn-success badge bg-secondary" >1</button></li>
-                        <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >+</button></li>
+                        <!--                        <li style="color: #EBA850" class="list-inline-item text-right">-->
+                        <!--                          Số lượng:-->
+                        <!--                          <input type="hidden" name="product-quanity" id="product-quanity" value="1">-->
+                        <!--                        </li>-->
+                        <!--                        <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >-</button></li>-->
+                        <!--                        <li class="list-inline-item"><button class="btn btn-success badge bg-secondary" >1</button></li>-->
+                        <!--                        <li class="list-inline-item"><button style="background-color: #EBA850" class="btn" >+</button></li>-->
                       </ul>
                     </div>
                   </div>
                   <div class="row pb-3">
-                    <div class="col d-grid">
-                      <a (click)="addToCart(book)" type="button" style="background-color: #EBA850" class="btn" >Thêm vào giỏ hàng
-                      </a>
+                    <div class="col d-grid d-flex">
+                      <div>
+                        <a (click)="addToCart(book)" type="button" style="background-color: #EBA850" class="btn">Thêm vào giỏ hàng</a>
+                      </div>
+                      <div style="margin-left: 2%">
+                        <a routerLink="/" type="button" style="background-color: #EBA850" class="btn">Quay lai</a>
+                      </div>
                     </div>
                   </div>
                 </div>

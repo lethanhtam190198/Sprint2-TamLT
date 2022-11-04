@@ -49,7 +49,7 @@ export class BooksService {
   }
 
   getCart() {
-    const cartJson = sessionStorage.getItem('cart');
+    const cartJson = localStorage.getItem('cart');
     if (cartJson) {
       return JSON.parse(cartJson);
     } else {
@@ -59,7 +59,7 @@ export class BooksService {
 
   saveCart(cart: any) {
     const cartJson = JSON.stringify(cart);
-    sessionStorage.setItem('cart', cartJson);
+    localStorage.setItem('cart', cartJson);
   }
 
   getCartTotalQuantity() {
@@ -94,7 +94,20 @@ export class BooksService {
     });
     return totalAll;
   }
+
   checkCode(code: string): Observable<string> {
     return this.http.get<string>(URL + '/check/' + code);
+  }
+
+  getAll(idCategory: number, search: string): Observable<any> {
+    if (idCategory === 0) {
+      return this.http.get<any>(URL + '/categoryBooks?name=' + search);
+    } else {
+      return this.http.get<any>(URL + '/categoryBooks?idCategory=' + idCategory + '&name=@');
+    }
+  }
+
+  getCategoryBook(page: number): Observable<any> {
+    return this.http.get<any>(URL + '/categoryBooks/?page' + page);
   }
 }

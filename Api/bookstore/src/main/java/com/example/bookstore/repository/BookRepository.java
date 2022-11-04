@@ -51,6 +51,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "select * from book where code=:code" ,nativeQuery = true)
     List<Book> checkCode(@Param("code")String code);
 
-    @Query(value = "select * from book where status = 0 and category =:idCategory and name like :name", nativeQuery = true)
+    @Query(value = "select * from book where status = 0 and category =:idCategory or name like :name", nativeQuery = true)
     Page<Book> getCategoryBook(Pageable pageable,@Param("idCategory") Integer idCategory,@Param("name") String name);
 }

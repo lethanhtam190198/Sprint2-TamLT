@@ -1,15 +1,9 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.dto.BookDto;
-import com.example.bookstore.dto.BooksDto;
-import com.example.bookstore.model.Book;
-import com.example.bookstore.model.Category;
-import com.example.bookstore.model.Customer;
-import com.example.bookstore.model.Discount;
-import com.example.bookstore.service.IBookService;
-import com.example.bookstore.service.ICategoryService;
-import com.example.bookstore.service.ICustomerService;
-import com.example.bookstore.service.IDiscountService;
+import com.example.bookstore.dto.*;
+import com.example.bookstore.model.*;
+import com.example.bookstore.service.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +35,15 @@ public class BookController {
 
     @Autowired
     private ICustomerService customerService;
+
+    @Autowired
+    private ICartService cartService;
+
+    @Autowired
+    private ICartDetailService cartDetailService;
+
+    @Autowired
+    private IStatisticService statisticService;
 
     @GetMapping("")
     public ResponseEntity<List<Book>> getAll() {
@@ -164,12 +169,60 @@ public class BookController {
     }
     @GetMapping("/categoryBooks")
     public ResponseEntity<Page<Book>> getCategoryVn(@RequestParam(defaultValue = "",required = false) String name,
-                                                    @RequestParam(defaultValue = "0",required = false) Integer idCategory,
+                                                    @RequestParam(defaultValue = "",required = false) Integer idCategory,
                                                     @PageableDefault(value = 8) Pageable pageable){
         Page<Book> listVn = bookService.getCategoryBook(pageable,idCategory,name);
         if (listVn.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(listVn,HttpStatus.OK);
+    }
+    @PostMapping("/saveCart/{username}")
+    public ResponseEntity<List<CartDetailDto>> saveCart(@PathVariable String username, @RequestBody List<CartDetailDto> cartDetails) {
+        Customer customer = customerService.findByUsername(username);
+        Cart cart = new Cart();
+        cart.setDateCreate(LocalDate.now());
+        cart.setCustomer(customer);
+        cart = cartService.save(cart);
+        for (CartDetailDto item : cartDetails) {
+            item.setBook(bookService.findById(item.getBook().getId()).get());
+            CartDetail cartDetail = new CartDetail();
+            cartDetail.setCart(cart);
+            cartDetail.setBook(item.getBook());
+            cartDetail.setQuantity(item.getQuantity());
+            cartDetailService.save(cartDetail);
+        }
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/history/{username}")
+    public ResponseEntity<HistoryDto> getHistory(@PathVariable String username) {
+        HistoryDto history = new HistoryDto();
+        Customer customer = customerService.findHistoryByUsername(username);
+        BeanUtils.copyProperties(customer, history);
+        List<Cart> carts = cartService.findByCustomerId(history.getId());
+        List<CartDto> cartDtos = new LinkedList<>();
+        for (Cart cart : carts) {
+            cartDtos.add(new CartDto(cart.getDateCreate().toString(),cart.getId()));
+        }
+        history.setCartDtoList(cartDtos);
+        for (CartDto item : history.getCartDtoList()) {
+            List<CartDetail> cartDetails = cartDetailService.findAllCartDetail(item.getId());
+            List<CartDetailDto> cartDetailDtos = new LinkedList<>();
+            for (CartDetail cartDetail : cartDetails) {
+                cartDetailDtos.add(new CartDetailDto(cartDetail.getQuantity(), cartDetail.getBook()));
+            }
+            item.setCartDetailDtoList(cartDetailDtos);
+        }
+        return new ResponseEntity<>(history, HttpStatus.OK);
+    }
+
+    @GetMapping("/statistic/{startDate}/{endDate}")
+    public ResponseEntity<List<StatisticDto>> getSellingBookTop10(@PathVariable String startDate,@PathVariable String endDate){
+        List<StatisticDto> statisticDtos = statisticService.getSellingBookTop10(startDate,endDate);
+        if (statisticDtos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(statisticDtos, HttpStatus.OK);
     }
 }
